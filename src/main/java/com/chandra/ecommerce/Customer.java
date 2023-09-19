@@ -1,12 +1,11 @@
 package com.chandra.ecommerce;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.OnDelete;
 
 @Entity
 @Data
@@ -22,5 +21,11 @@ public class Customer {
     private String address;
     private String sex;
     private int birthDate;
+
+
+    @ManyToOne(fetch = FetchType.EAGER,optional = false)
+    @JoinColumn(name="Customer_Order_Id",nullable = true)
+    //@JsonIgnore
+    private Product product;
 
 }
